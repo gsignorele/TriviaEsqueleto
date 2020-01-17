@@ -1,0 +1,34 @@
+<body>
+{% extends "base.html" %}
+{% block content %}
+<h1>Seleccione Categoria</h1>
+<br>
+<table border="0">
+   {% for categoria in categorias %}
+	<tr>	
+	<td>
+	{% if not session[categoria.id|string] %}
+		<a href="/trivia/{{categoria.id}}/pregunta">
+	{% endif %}
+	{{categoria.descripcion}}
+	</td>
+	{% if session[categoria.id|string]==False %}
+		</a>
+	{% endif %}
+	<td>
+	{% if not session[categoria.id|string] %}
+		Pendiente
+	{% else %}
+		<b>Aprobado</b>
+	{% endif %}
+	</td>	
+	</tr>
+   {% endfor %}
+</table>
+<hr>
+<br>
+<span class="cabezal">
+tiempo hasta ahora: {{ tiempo }} segundos
+</span>
+{% endblock %}
+</body>
